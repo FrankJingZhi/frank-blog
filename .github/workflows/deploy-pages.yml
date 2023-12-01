@@ -7,7 +7,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # 检出main分支，并在后续操作中使用。
+      # 检出main分支，并在后续操作中使用
       - name: Checkout Branch Main
         uses: actions/checkout@v2
         with:
