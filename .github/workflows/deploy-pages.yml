@@ -1,0 +1,80 @@
+name: Deploy to Github Pages and Gitee Pages
+
+on:
+  push:
+    branches:
+      - main # default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
+          submodules: recursive
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./public
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+  # mirroring-gitee:
+  #   needs: build-and-deploy
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout Branch gh-pages
+  #       uses: actions/checkout@v3
+  #       with:
+  #         ref: 'gh-pages'
+  #         fetch-depth: 0
+  #     - name: Push to Gitee
+  #       run: |
+  #         mkdir ~/.ssh
+  #         ssh-keyscan -H gitee.com >> ~/.ssh/known_hosts
+  #         echo "${{ secrets.GITEE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa_gitee
+  #         chmod 600 ~/.ssh/id_rsa_gitee
+  #         echo "Host gitee.com
+  #           HostName gitee.com
+  #           User git
+  #           IdentityFile ~/.ssh/id_rsa_gitee
+  #           IdentitiesOnly yes" >> ~/.ssh/config
+  #         git config --global user.name "Github Actions"
+  #         git config --global user.email "noreply@github.com"
+  #         git checkout --orphan e3a3bcbf11db4c5e9199e81e21e3d7cf
+  #         git add -A
+  #         git commit -m "deploy"
+  #         git branch -d gh-pages
+  #         git branch -m gh-pages
+  #         git remote add gitee git@gitee.com:dq07/blog.git
+  #         git push --force gitee gh-pages
+  #     - name: Post Webhook
+  #       run: |
+  #         curl https://blog.dqv5.com/deploy?token=e9e8038a09464231bd637fd6824d3d14
