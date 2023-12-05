@@ -48,6 +48,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+      run: |
+          echo GITEE_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+          echo GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       # 将上传的文件部署到github pages服务器
@@ -60,9 +63,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Mirror the Github organization repos to Gitee.
-        run: |
-          echo GITEE_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
-          echo GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
         uses: Yikun/hub-mirror-action@master
         with:
           src: 'github/frank-blog'
