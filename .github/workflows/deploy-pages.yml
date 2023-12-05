@@ -60,10 +60,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Mirror the Github organization repos to Gitee.
+        run: |
+          echo GITEE_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+          echo GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
         uses: Yikun/hub-mirror-action@master
         with:
-          src: github/frank-blog
-          dst: gitee/frank-blog
+          src: 'github/frank-blog'
+          dst: 'gitee/frank-blog'
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
-          account_type: user
+          # account_type: user
