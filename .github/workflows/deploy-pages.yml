@@ -46,35 +46,13 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-  # mirroring-gitee:
-  #   needs: build-and-deploy
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout Branch gh-pages
-  #       uses: actions/checkout@v3
-  #       with:
-  #         ref: 'gh-pages'
-  #         fetch-depth: 0
-  #     - name: Push to Gitee
-  #       run: |
-  #         mkdir ~/.ssh
-  #         ssh-keyscan -H gitee.com >> ~/.ssh/known_hosts
-  #         echo "${{ secrets.GITEE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa_gitee
-  #         chmod 600 ~/.ssh/id_rsa_gitee
-  #         echo "Host gitee.com
-  #           HostName gitee.com
-  #           User git
-  #           IdentityFile ~/.ssh/id_rsa_gitee
-  #           IdentitiesOnly yes" >> ~/.ssh/config
-  #         git config --global user.name "Github Actions"
-  #         git config --global user.email "noreply@github.com"
-  #         git checkout --orphan e3a3bcbf11db4c5e9199e81e21e3d7cf
-  #         git add -A
-  #         git commit -m "deploy"
-  #         git branch -d gh-pages
-  #         git branch -m gh-pages
-  #         git remote add gitee git@gitee.com:dq07/blog.git
-  #         git push --force gitee gh-pages
-  #     - name: Post Webhook
-  #       run: |
-  #         curl https://blog.dqv5.com/deploy?token=e9e8038a09464231bd637fd6824d3d14
+  # 同步github项目代码到gitee
+  mirroring-gitee:
+    - name: Mirror the Github organization repos to Gitee.
+      uses: Yikun/hub-mirror-action@master
+      with:
+        src: github/frank-blog
+        dst: gitee/frank-blog
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+        dst_token: ${{ secrets.GITEE_TOKEN }}
+        account_type: user
