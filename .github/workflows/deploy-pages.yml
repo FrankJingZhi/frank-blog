@@ -54,7 +54,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-  # 同步github项目代码到gitee.
+  # 同步github项目代码到gitee
   mirroring-gitee:
     needs: [build, deploy]
     runs-on: ubuntu-latest
