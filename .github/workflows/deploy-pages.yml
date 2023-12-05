@@ -66,4 +66,4 @@ jobs:
           dst: 'gitee/Frank-Awesome'
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
-          # account_type: user
+          static_list: "frank-blog"
