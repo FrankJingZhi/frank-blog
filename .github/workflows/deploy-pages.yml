@@ -63,7 +63,7 @@ jobs:
         uses: Yikun/hub-mirror-action@master
         with:
           src: 'github/15666795711/frank-blog'
-          dst: 'gitee/Frank/frank-blog'
+          dst: 'gitee/Frank-Awesome/frank-blog'
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
           # account_type: user
