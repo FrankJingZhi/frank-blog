@@ -7,17 +7,21 @@ on:
 
 jobs:
   build:
+    # 运行环境
     runs-on: ubuntu-latest
     steps:
+      # 检出分支，后续在该分支上操作
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           submodules: recursive
+      # nodejs使用的版本
       - name: Use Node.js 16.x
         uses: actions/setup-node@v2
         with:
           node-version: '16'
+      # 缓存依赖
       - name: Cache NPM dependencies
         uses: actions/cache@v2
         with:
@@ -25,10 +29,13 @@ jobs:
           key: ${{ runner.OS }}-npm-cache
           restore-keys: |
             ${{ runner.OS }}-npm-cache
+      # 安装依赖
       - name: Install Dependencies
         run: npm install
+      # 打包
       - name: Build
         run: npm run build
+      # 上传打包文件到github pages服务器
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
@@ -43,11 +50,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      # 将上传的文件部署到github pages服务器
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
   # 同步github项目代码到gitee.
   mirroring-gitee:
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
     steps:
       - name: Mirror the Github organization repos to Gitee.
         uses: Yikun/hub-mirror-action@master
