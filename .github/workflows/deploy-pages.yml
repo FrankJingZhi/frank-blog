@@ -48,11 +48,12 @@ jobs:
         uses: actions/deploy-pages@v2
   # 同步github项目代码到gitee
   mirroring-gitee:
-    - name: Mirror the Github organization repos to Gitee.
-      uses: Yikun/hub-mirror-action@master
-      with:
-        src: github/frank-blog
-        dst: gitee/frank-blog
-        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-        dst_token: ${{ secrets.GITEE_TOKEN }}
-        account_type: user
+    steps:
+      - name: Mirror the Github organization repos to Gitee.
+        uses: Yikun/hub-mirror-action@master
+        with:
+          src: github/frank-blog
+          dst: gitee/frank-blog
+          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          dst_token: ${{ secrets.GITEE_TOKEN }}
+          account_type: user
