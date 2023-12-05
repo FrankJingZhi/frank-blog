@@ -34,10 +34,7 @@ jobs:
         run: npm install
       # 打包
       - name: Build
-        run: |
-          echo GITEE_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
-          echo GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
-          npm run build
+        run: npm run build
       # 上传打包文件到github pages服务器
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v2
