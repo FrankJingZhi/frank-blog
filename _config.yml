@@ -6,14 +6,14 @@
 title: Frank's Blog
 subtitle: ''
 description: 'Frank, Blog, 前端, 进阶, 成长, 学习, 技术, react, vue, html, css, js'
-keywords: Frank, Blog, 前端, 进阶, 成长, 学习, 技术, react, vue, html, css, js
+keywords: 'Frank, Blog, 前端, 进阶, 成长, 学习, 技术, react, vue, html, css, js'
 author: Frank
 language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://15666795711.github.io/frank-blog
+url: https://frankjingzhi.github.io/frank-blog
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -67,8 +67,8 @@ index_generator:
 
 # Category & Tag
 default_category: uncategorized
-category_map:
-tag_map:
+category_map: 类别一, 类别二
+tag_map: 标签一, 标签二
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
@@ -97,7 +97,8 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: cafe
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -105,3 +106,4 @@ deploy:
   # type: git
   # repo: https://github.com/15666795711/frank-blog
   # branch: main
+
