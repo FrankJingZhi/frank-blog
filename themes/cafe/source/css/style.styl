@@ -66,6 +66,23 @@ body
   .mobile-nav-on &
     left: mobile-nav-width
 
+.scrollbar::-webkit-scrollbar-thumb {
+  display: block;
+  background-color: #e5e5e5;
+}
+.scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+}
+.scrollbar::-webkit-scrollbar-thumb,
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 30px;
+}
+.scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
 if sidebar and sidebar isnt bottom
   #main
     @media mq-normal

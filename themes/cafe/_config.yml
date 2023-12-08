@@ -124,3 +124,6 @@ google_plus:
 fb_admins:
 fb_app_id:
 
+# giscus 评论功能
+giscus:
+  enable: true

@@ -1,0 +1,33 @@
+<% if (theme.giscus.enable){ %>
+  <script src="https://giscus.app/client.js"
+    data-repo="FrankJingZhi/frank-blog"
+    data-repo-id="R_kgDOKxFxLw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOKxFxL84CbjrP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    defer>
+  </script>
+  <script type="text/javascript">
+    var timer = null
+    function moveGiscusTimer(){
+      timer && clearTimeout(timer)
+      var targetNode = document.querySelector('.giscus')
+      var parentNode = document.getElementById('comments')
+      if(targetNode && parentNode) {
+        parentNode.appendChild(targetNode)
+        timer = null
+      }else {
+        timer = setTimeout(moveGiscusTimer, 1000)
+      }
+    }
+    var parentNode = document.getElementById('comments')
+    if(parentNode) moveGiscusTimer()
+  </script>
+<% } %>
