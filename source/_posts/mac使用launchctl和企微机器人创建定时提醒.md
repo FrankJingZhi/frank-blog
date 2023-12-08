@@ -1,7 +1,7 @@
 ---
 title: mac使用launchctl和企微机器人创建定时提醒
 date: 2023-12-08 16:24:18
-tags: [mac, launchctl]
+tags: [mac, launchctl, 企微机器人, 自动化]
 ---
 
 # 写在前面
