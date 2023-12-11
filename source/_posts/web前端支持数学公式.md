@@ -1,7 +1,7 @@
 ---
 title: web前端支持数学公式
 date: 2023-12-11 20:01:26
-tags:
+tags: [MathJax, LaTeX, JavaScript]
 ---
 
 ## 前言
