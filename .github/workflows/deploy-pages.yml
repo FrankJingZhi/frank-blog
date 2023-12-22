@@ -79,3 +79,11 @@ jobs:
           static_list: "frank-blog"
           force_update: true
           timeout: '5m'
+      # 把项目部署到gitee pages
+      - name: Build Gitee Pages
+        uses: yanglbme/gitee-pages-action@main
+        with:
+          gitee-username: Frank-Awesome
+          gitee-password: ${{ secrets.GITEE_PASSWORD }}
+          gitee-repo: gitee/Frank-Awesome
+          branch: main
