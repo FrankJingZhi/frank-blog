@@ -1,7 +1,7 @@
 ---
 title: 搭建个人博客后续-将项目自动化部署到gitee
 date: 2023-12-22 14:17:32
-tags:
+tags: [GitHub Actions, Gitee Pages, 自动化]
 ---
 
 ## 前言
@@ -21,7 +21,7 @@ tags:
 有的同学说：“那既然没有添加部署能力，那我们像github一样添加一下不就得了？”答案是：不可以。gitee的免费版并没有提供像github actions的编译部署能力，对应的能力是在gitee pages pro版本中，是需要花钱的。那咋办呢？
 
 既然这样我们就看看能不能直接用github actions的能力来处理。我们在[官方市场](https://github.com/marketplace?type=actions)中通过关键词`gitee pages`搜索，找到如下结果：
-[](/images/gitee-pages-search-result.png)
+![](/images/gitee-pages-search-result.png)
 
 我们选择一个stars数量多的`Gitee Pages Action`，看下描述：
 > 为了实现 Gitee Pages 的自动部署，我开发了 Gitee Pages Action ，只需要在 GitHub 项目的 Settings 页面下配置 keys，然后在 .github/workflows/ 下创建一个工作流，引入一些配置参数即可。
@@ -93,11 +93,15 @@ mirroring-gitee:
       with:
         gitee-username: Frank-Awesome
         gitee-password: ${{ secrets.GITEE_PASSWORD }}
-        gitee-repo: gitee/Frank-Awesome
+        gitee-repo: Frank-Awesome/frank-blog
         branch: main
 ```
 
 再次运行：
+![](/images/gitee-pages-action-result.png)
+
+打开我们的[gitee pages页面](https://frank-awesome.gitee.io/)看下：
+![](/images/gitee-pages-page.png)
 
 
 好了，现在我们就实现了gitee pages的自动部署功能✨
