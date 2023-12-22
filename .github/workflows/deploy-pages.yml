@@ -85,5 +85,5 @@ jobs:
         with:
           gitee-username: Frank-Awesome
           gitee-password: ${{ secrets.GITEE_PASSWORD }}
-          gitee-repo: gitee/Frank-Awesome
+          gitee-repo: Frank-Awesome/frank-blog
           branch: main
