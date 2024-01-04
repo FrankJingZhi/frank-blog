@@ -1,14 +1,14 @@
 ---
 title: mac使用launchctl和企微机器人创建定时提醒
 date: 2023-12-08 16:24:18
-tags: [mac, launchctl, 企微机器人, 自动化]
+tags: [Mac, Launchctl, 企微机器人, 自动化]
 ---
 
 # 写在前面
 
-因为最近公司的聊天工具转用了企业微信，所以想配合企业微信里的机器人搞点好玩的东西，比如定时提醒上下班，提醒干饭😁。
+因为最近公司的聊天工具转用了企业微信，所以想配合企业微信里的机器人搞点好玩的东西，比如定时提醒上下班，提醒干饭 😁。
 
-因为本身对launchctl一窍不通，所以在应用的时候遇到了很多奇奇怪怪的问题，包括但不限于文件权限、plist编写规范、执行命令行报错不知道怎么查等等，于是就有了这篇文章。我遇到问题的地方会重点标注。
+因为本身对 launchctl 一窍不通，所以在应用的时候遇到了很多奇奇怪怪的问题，包括但不限于文件权限、plist 编写规范、执行命令行报错不知道怎么查等等，于是就有了这篇文章。我遇到问题的地方会重点标注。
 
 # 正文
 
@@ -54,25 +54,25 @@ echo `date`
     <!-- 脚本任务 -->
     <key>Program</key>
     <string>/usr/local/bin/echo.sh</string>
-    
+
     <!-- 脚本之行的命令和参数 -->
     <key>ProgramArguments</key>
     <array>
         <string>/usr/local/bin/echo.sh</string>
     </array>
-    
+
     <!-- 轮询执行，每10s执行一次脚本 -->
     <key>StartInterval</key>
     <integer>10</integer>
-    
+
     <!-- 首次加载时是否立即执行一次 -->
     <key>RunAtLoad</key>
     <true/>
-    
+
     <!-- 日志输出文件 -->
     <key>StandardOutPath</key>
     <string>/usr/local/bin/echo.log</string>
-    
+
     <!-- 错误日志输出文件 -->
     <key>StandardErrorPath</key>
     <string>/usr/local/bin/echo.err</string>
@@ -82,13 +82,13 @@ echo `date`
 
 4.  .plist 文件标签说明：
 
--   `Label`：定时任务的名称，这里 Label 的值是 `com.echo.plist`，要全局唯一，可通过：`launchctl list` 查看已有的定时任务
--   `Program`：是要运行的脚本的名称，这里是 /usr/local/bin/echo.sh
--   `ProgramArguments`： 脚本运行的参数，第一个是运行的命令，其余是运行需要的参数，这里是 /usr/local/bin/working.sh，由于运行这个脚本不需要其他参数，所有只有这一个命令
--   `RunAtLoad`：表示加载定时任务即开始执行脚本
--   `StartInterval`： 定时任务的周期，单位为秒，这里 30 代表每 30s 执行一次脚本
--   `StandardOutPath`： 标准输出日志的路径
--   `StandardErrorPath`： 标准错误输出日志的路径
+- `Label`：定时任务的名称，这里 Label 的值是 `com.echo.plist`，要全局唯一，可通过：`launchctl list` 查看已有的定时任务
+- `Program`：是要运行的脚本的名称，这里是 /usr/local/bin/echo.sh
+- `ProgramArguments`： 脚本运行的参数，第一个是运行的命令，其余是运行需要的参数，这里是 /usr/local/bin/working.sh，由于运行这个脚本不需要其他参数，所有只有这一个命令
+- `RunAtLoad`：表示加载定时任务即开始执行脚本
+- `StartInterval`： 定时任务的周期，单位为秒，这里 30 代表每 30s 执行一次脚本
+- `StandardOutPath`： 标准输出日志的路径
+- `StandardErrorPath`： 标准错误输出日志的路径
 
 加载该定时任务：
 
@@ -109,14 +109,14 @@ echo `date`
 
 如果我们的目标不是每 30 秒执行脚本，而是每天固定时间执行脚本，比如每天晚上 22:00 执行脚本，那么我们需要对 .plist 文件进行如下修改：
 
--   删除：
+- 删除：
 
 ```
 <key>StartInterval</key>
 <integer>30</integer>
 ```
 
--   添加：
+- 添加：
 
 ```
 <key>StartCalendarInterval</key>
@@ -145,13 +145,13 @@ echo `date`
     <!-- 脚本任务 -->
     <key>Program</key>
     <string>/usr/local/bin/echo.sh</string>
-    
+
     <!-- 脚本之行的命令和参数 -->
     <key>ProgramArguments</key>
     <array>
         <string>/usr/local/bin/echo.sh</string>
     </array>
-    
+
     <!-- 22:00执行一次脚本 -->
     <key>StartCalendarInterval</key>
     <dict>
@@ -160,15 +160,15 @@ echo `date`
         <key>Minute</key>
         <integer>0</integer>
     </dict>
-    
+
     <!-- 首次加载时是否立即执行一次 -->
     <key>RunAtLoad</key>
     <true/>
-    
+
     <!-- 日志输出文件 -->
     <key>StandardOutPath</key>
     <string>/usr/local/bin/echo.log</string>
-    
+
     <!-- 错误日志输出文件 -->
     <key>StandardErrorPath</key>
     <string>/usr/local/bin/echo.err</string>
@@ -190,7 +190,7 @@ echo `date`
 
 ## 配合企微机器人创建定时提醒
 
-1.  首先我们添加一个机器人，然后复制webhook地址
+1.  首先我们添加一个机器人，然后复制 webhook 地址
 
 ![](/images/launchctl-2.jpg)
 
@@ -212,15 +212,15 @@ curl 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=ef1a6985' \
 echo `date`
 ```
 
-3.  然后我们添加一个11:56的定时任务就完成了，可以看到
+3.  然后我们添加一个 11:56 的定时任务就完成了，可以看到
 
 ![](/images/launchctl-3.jpg)
 
-4.  如果你愿意的话，还可以多添加几个，比如添加一个10:30的上班提醒，你就会看到😁
+4.  如果你愿意的话，还可以多添加几个，比如添加一个 10:30 的上班提醒，你就会看到 😁
 
 ![](/images/launchctl-4.jpg)
 
-5.  企微机器人的原理其实很简单，就是提供给我们一个api，我们组织好模版内容作为参数调用就可以了。
+5.  企微机器人的原理其实很简单，就是提供给我们一个 api，我们组织好模版内容作为参数调用就可以了。
 
 ## **Launchctl 细节**
 
@@ -230,7 +230,7 @@ echo `date`
 
 | **Type**       | **Location**                  | **Run on behalf of**                             |
 | -------------- | ----------------------------- | ------------------------------------------------ |
-| User Agents    | ~/Library/LaunchAgents       | Currently logged in user                         |
+| User Agents    | ~/Library/LaunchAgents        | Currently logged in user                         |
 | Global Agents  | /Library/LaunchAgents         | Currently logged in user                         |
 | Global Daemons | /Library/LaunchDaemons        | root or the user specified with the key UserName |
 | System Agents  | /System/Library/LaunchAgents  | Currently logged in user                         |
@@ -268,11 +268,11 @@ echo `date`
 
 # 写在最后
 
--   `如果任务修改了，必须先 unload，然后重新执行 load`
--   `start 可以测试任务，这个命令是立即执行，不管时间到了没有`
--   `执行 start 和 unload 命令前，任务必须先执行过 load，否则报错`
--   `.plist 中不要添加 KeepAlive 标签，否则无条件 10s 定时执行`
--   `要保证 .plist 文件内容书写规范，否则报错。`
--   `要保证 .plist 文件权限是644，.sh 脚本权限755，.log文件权限644，否则报错`
--   `文件存放的位置也可能导致报错，或者执行不成功`
--   `如果不熟悉的话建议严格按照文档中的步骤先写一个最简单的案例，然后一步一步延展！`
+- `如果任务修改了，必须先 unload，然后重新执行 load`
+- `start 可以测试任务，这个命令是立即执行，不管时间到了没有`
+- `执行 start 和 unload 命令前，任务必须先执行过 load，否则报错`
+- `.plist 中不要添加 KeepAlive 标签，否则无条件 10s 定时执行`
+- `要保证 .plist 文件内容书写规范，否则报错。`
+- `要保证 .plist 文件权限是644，.sh 脚本权限755，.log文件权限644，否则报错`
+- `文件存放的位置也可能导致报错，或者执行不成功`
+- `如果不熟悉的话建议严格按照文档中的步骤先写一个最简单的案例，然后一步一步延展！`
