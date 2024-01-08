@@ -1,9 +1,9 @@
 widgets:
-  -
-    type: tags
+  - type: categories
     position: right
-  -
-    type: toc
+  - type: tags
+    position: right
+  - type: toc
     position: right
 sidebar:
   left:
