@@ -1,5 +1,5 @@
 ---
-title: 02引入函数组件与类组件提升渲染能力——实现setState功能
+title: 03引入函数组件与类组件提升渲染能力——实现setState功能
 date: 2024-01-11 16:55:30
 tags: [React]
 categories: [从0到1实现React核心功能]
@@ -264,6 +264,26 @@ class Updater {
 }
 ```
 
+### setState 的批量更新功能尝试
+
+跟单个更新一样，我们目前也是只能在 getClassDOM 方法中再加一个 setTimeout
+
+```js
+// TODO: 需要删除的代码 start
+setTimeout(() => {
+  instance.setState({ name: 'mini-react1' })
+}, 3000)
+setTimeout(() => {
+  instance.setState({ name: 'mini-react2' })
+}, 6000)
+// TODO: 需要删除的代码 end
+```
+
+我们看下运行结果
+![](/images/mini-react-02-setState-batch-demo.gif)
+
+OK，没问题
+
 最后看一下`src/Component.js`完整的代码
 
 ```js
@@ -354,4 +374,4 @@ export class Component {
 
 # 后序
 
-OK，到这里 setState 的功能就算实现了，因为我们没有实现事件委托系统，批量更新的功能目前不好演示，我们就留到下一篇事件委托机制中一起演示吧。🎉
+OK，到这里 setState 的功能就算实现了，因为我们没有实现事件委托系统，什么时候开始批量更新，我们就留到下一篇事件委托机制中一起演示吧。🎉
