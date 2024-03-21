@@ -27,17 +27,19 @@ tags: ['Tailwind CSS', 'rem', '多端适配']
 
 ### 为什么需要 tailwind css
 
-在我的使用感受上来说，`tailwind css`解决了我的以下几个痛点：
+在我的使用感受上来说，`tailwind css` 解决了我的以下几个痛点：
 
-1. 不需要再为`css`提供单独的文件了，这样我就不用在`html`和`css`之间来回穿梭了。
-2. `tailwind css`使得`css`原子化，这就像一个工具库，我只需要调用其中的`api`就行了。只不过这个工具库是`css`工具库。
-3. 它的单位是`rem`，这使得我在做多端适配和页面等比例缩放的时候非常方便。
+1. 不需要再为 `css` 提供单独的文件了，这样我就不用在 `html` 和 `css` 之间来回穿梭了。
+2. `tailwind css` 使得 `css` 原子化，这就像一个工具库，我只需要调用其中的 `api` 就行了。只不过这个工具库是 `css` 工具库。
+3. 它的单位是 `rem`，这使得我在做多端适配和页面等比例缩放的时候非常方便。
 
 ### 如何使用 tailwind css
 
-附上![Tailwind CSS官网](https://tailwindcss.com/docs/installation)的路径。官网的操作手册很详细，我就不多 BB 了。
+附上[Tailwind CSS 官网](https://tailwindcss.com/docs/installation)的路径。官网的操作手册很详细，我就不多 BB 了。
 
-![](/images/funny-1.webp)
+<div style="text-align: center;">
+  <img src="/frank-blog/images/funny-1.webp">
+</div>
 
 安装完成后，打开我们的页面和代码看一下
 
@@ -45,17 +47,17 @@ tags: ['Tailwind CSS', 'rem', '多端适配']
 
 ![](/images/tailwindcss-2.png)
 
-生效了，而且也只打包进了我们使用到的几个样式，而且多次使用同一种样式，`output.css`种也只是打包进了一份。
+生效了，而且也只打包进了我们使用到的几个样式，而且多次使用同一种样式，`output.css` 种也只是打包进了一份。
 
-我认为这是`tailwind css`最有价值的点之一。
+我认为这是 `tailwind css` 最有价值的点之一。
 
 ### 业务场景一：多端适配
 
-附上![官网自适应](https://tailwindcss.com/docs/responsive-design)的链接。
+附上[官网自适应](https://tailwindcss.com/docs/responsive-design)的链接。
 
 ![](/images/tailwindcss-9.png)
 
-`tailwind css`拆分出了各种尺寸的适配，我们只需要在类前添加对应的标识即可。如下：
+`tailwind css` 拆分出了各种尺寸的适配，我们只需要在类前添加对应的标识即可。如下：
 
 ```html
 <!-- 在1024px以上的屏幕中使用w-48，在768px - 1024px之间的屏幕中使用w-32 -->
@@ -66,7 +68,7 @@ tags: ['Tailwind CSS', 'rem', '多端适配']
 
 ![](/images/tailwindcss-7.gif)
 
-我认为这是`tailwind css`最有价值的点之二。
+我认为这是 `tailwind css` 最有价值的点之二。
 
 ### 业务场景二：等比例缩放
 
@@ -76,7 +78,7 @@ tags: ['Tailwind CSS', 'rem', '多端适配']
 
 要解决这个问题，我们要知道一个知识点：
 
-`rem`的大小是随页面根元素（通常是`html`）的大小变化的。可以简单理解为`元素字体大小 = 元素rem * 根元素px`。举例说明：
+`rem` 的大小是随页面根元素（通常是 `html` ）的大小变化的。可以简单理解为 `元素字体大小 = 元素rem * 根元素px` 。举例说明：
 
 ```html
 <html style="fontSize: 32px">
@@ -84,9 +86,9 @@ tags: ['Tailwind CSS', 'rem', '多端适配']
 </html>
 ```
 
-此时，p 元素的字体大小转换为 px 为`1rem * 32px = 32px`。
+此时，p 元素的字体大小转换为 px 为 `1rem * 32px = 32px`。
 
-明白这个知识点后，就很简单了，因为`tailwind css`使用的单位都是`rem`，我们只需要在页面变化的时候，修改根元素大小就行了。
+明白这个知识点后，就很简单了，因为 `tailwind css` 使用的单位都是 `rem` ，我们只需要在页面变化的时候，修改根元素大小就行了。
 
 ```js
 // 根据页面尺寸，等比例缩放页面
@@ -121,9 +123,9 @@ window.onresize = setRem
 
 ![](/images/tailwindcss-7.gif)
 
-这是![我的demo仓库](https://github.com/FrankJingZhi/tailwind-css-demo)，大家可以下载看一下。
+这是[我的 demo 仓库](https://github.com/FrankJingZhi/tailwind-css-demo)，大家可以下载看一下。
 
-我认为这是`tailwind css`最有价值的点之三。
+我认为这是 `tailwind css` 最有价值的点之三。
 
 ## 后序
 
