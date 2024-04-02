@@ -1,7 +1,7 @@
 ---
 title: 深入理解http协议
 date: 2024-03-24 17:27:09
-tags:
+tags: [HTTP, TCP]
 ---
 
 ## 前言
