@@ -34,3 +34,5 @@ tags: [性能优化, CLS]
 3. 为元素设置宽高
 
 ![](/images/cls2.png)
+
+参考内容：[https://web.dev/articles/cls?hl=zh-cn](https://web.dev/articles/cls?hl=zh-cn)
